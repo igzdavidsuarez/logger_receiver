@@ -2,6 +2,8 @@ version: '2'
 services:
  flume:
   build: .
+  ports:
+   - "4000:4000"
   volumes:
    - ./receiver-agent.conf:/var/tmp/receiver-agent.conf
   environment:
