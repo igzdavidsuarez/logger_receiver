@@ -1,0 +1,12 @@
+version: '2'
+services:
+ flume:
+  build: .
+  volumes:
+   - ./receiver-agent.conf:/var/tmp/receiver-agent.conf
+  environment:
+   - FLUME_AGENT_NAME=collector
+   - FLUME_CONF_FILE=/var/tmp/receiver-agent.conf
+  command:
+   - ./opt/flume/bin/start-flume.sh
+
