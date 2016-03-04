@@ -9,4 +9,6 @@ services:
    - FLUME_CONF_FILE=/var/tmp/receiver-agent.conf
   command:
    - ./opt/flume/bin/start-flume.sh
+  expose:
+   - "4000"
 
