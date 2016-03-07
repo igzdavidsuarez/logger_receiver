@@ -4,6 +4,8 @@ services:
   build: .
   ports:
    - "5000:4000"
+  links:
+   - elasticsearch
   volumes:
    - ./receiver-agent.conf:/var/tmp/receiver-agent.conf
   environment:
@@ -11,4 +13,23 @@ services:
    - FLUME_CONF_FILE=/var/tmp/receiver-agent.conf
   command:
    - ./opt/flume/bin/start-flume.sh
+  expose:
+   - "9200"
+   - "9300"
 
+ elasticsearch:
+  image: elasticsearch:latest
+  ports:
+   - "9200"
+  expose:
+   - "9200"
+   - "9300"
+
+ kibana:
+  image: kibana:latest
+  ports:
+   - "5601:5601"
+  environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+  links: 
+   - elasticsearch
