@@ -3,7 +3,7 @@ services:
  flume:
   build: .
   ports:
-   - "4000:4000"
+   - "5000:4000"
   volumes:
    - ./receiver-agent.conf:/var/tmp/receiver-agent.conf
   environment:
@@ -11,6 +11,4 @@ services:
    - FLUME_CONF_FILE=/var/tmp/receiver-agent.conf
   command:
    - ./opt/flume/bin/start-flume.sh
-  expose:
-   - "4000"
 
